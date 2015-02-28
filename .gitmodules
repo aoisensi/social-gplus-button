@@ -1,0 +1,3 @@
+[submodule "bower_components/social-gplus-button"]
+	path = bower_components/social-gplus-button
+	url = git://github.com/aoisensi/social-gplus-button.git
