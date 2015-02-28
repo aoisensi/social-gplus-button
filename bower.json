@@ -1,0 +1,24 @@
+{
+  "name": "social-gplus-button",
+  "version": "0.1.0",
+  "authors": [
+    "aoisensi <aoisensi@mail.com>"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "google+"
+  ],
+  "main": "social-gplus-button",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-component-page": "Polymer/core-component-page#^0.5",
+    "polymer": "~0.5.5"
+  }
+}

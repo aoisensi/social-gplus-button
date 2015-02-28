@@ -1,0 +1,64 @@
+<link href="bower_components/polymer/polymer.html" rel="import">
+
+<polymer-element name="social-gplus-button" attributes="href size annotation width align expandTo callback onstartinteraction onendinteraction recommendations count height">
+  <template>
+    <iframe title='plus' src='{{src}}' frameborder='0' scrolling='no' width='{{width}}' height='{{height}}'>g+1</iframe>
+  </template>
+  <script>
+    function getCanonical() {
+      var links = document.getElementsByTagName("link");
+      for (var i in links) {
+        if (links[i].rel == "canonical") {
+          return links[i].href;
+        };
+      };
+      return null;
+    };
+    var args = ['href', 'size', 'annotation', 'width', 'align', 'expandTo', 'callback', 'onstartinteraction', 'onendinteraction', 'recommendations', 'count'];
+    Polymer('social-gplus-button', {
+      href: null,
+      size: null,
+      annotation: null,
+      width: null,
+      align: null,
+      expandTo: null,
+      callback: null,
+      onstartinteraction: null,
+      onendinteraction: null,
+      recommendations: null,
+      count: null,
+
+      width: 140,
+      height: 28,
+
+      src: '',
+      ready: function() {
+        this.update()
+      },
+      attributeChanged: function(a, o, n) {
+        this.update()
+      },
+      update: function() {
+        var src = 'https://plusone.google.com/u/0/_/+1/fastbutton?';
+        for (var i in args) {
+          var arg = args[i];
+          var attr = this.getAttribute(arg);
+          if (attr) {
+            src += arg + '=' + attr + '&';
+          } else {
+            switch (arg) {
+              case 'href':
+                var url = getCanonical();
+                if (url == null) {
+                  url = document.location.href;
+                };
+                src += arg + '=' + url + '&';
+                break;
+            };
+          };
+        };
+        this.src = src;
+      }
+    });
+  </script>
+</polymer-element>
