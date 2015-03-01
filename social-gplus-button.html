@@ -1,27 +1,17 @@
 <link href="../polymer/polymer.html" rel="import">
 
-<polymer-element name="social-gplus-button" attributes="href size annotation width align expandTo callback onstartinteraction onendinteraction recommendations count height">
+<polymer-element name="social-gplus-button" attributes="href size annotation width align expandto callback onstartinteraction onendinteraction recommendations height">
   <template>
     <iframe title='plus' src='{{src}}' frameborder='0' scrolling='no' width='{{width}}' height='{{height}}'>g+1</iframe>
   </template>
   <script>
-    function getCanonical() {
-      var links = document.getElementsByTagName("link");
-      for (var i in links) {
-        if (links[i].rel == "canonical") {
-          return links[i].href;
-        };
-      };
-      return null;
-    };
-    var args = ['href', 'size', 'annotation', 'width', 'align', 'expandTo', 'callback', 'onstartinteraction', 'onendinteraction', 'recommendations', 'count'];
     Polymer('social-gplus-button', {
       href: null,
       size: null,
       annotation: null,
       width: null,
       align: null,
-      expandTo: null,
+      expandto: null,
       callback: null,
       onstartinteraction: null,
       onendinteraction: null,
@@ -32,10 +22,20 @@
       height: 28,
 
       src: '',
+      getCanonical: function() {
+        var links = document.getElementsByTagName("link");
+        for (var i in links) {
+          if (links[i].rel == "canonical") {
+            return links[i].href;
+          };
+        };
+        return null;
+      },
       ready: function() {
         this.update()
       },
       update: function() {
+        var args = ['href', 'size', 'annotation', 'width', 'align', 'expandto', 'callback', 'onstartinteraction', 'onendinteraction', 'recommendations'];
         var src = 'https://plusone.google.com/u/0/_/+1/fastbutton?';
         for (var i in args) {
           var arg = args[i];
@@ -45,7 +45,7 @@
           } else {
             switch (arg) {
               case 'href':
-                var url = getCanonical();
+                var url = this.getCanonical();
                 if (url == null) {
                   url = document.location.href;
                 };
